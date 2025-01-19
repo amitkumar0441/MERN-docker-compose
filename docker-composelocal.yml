@@ -13,9 +13,7 @@ services:
 
   backend: 
    container_name: backendcontainer 
-   build: 
-     context: ./mern/backend/ 
-   image: amitkumar0441/mernproject-backend:${BUILD_NUMBER}
+   build: ./mern/backend/ 
    ports:
      - "5050:5050"
    networks: 
@@ -25,9 +23,7 @@ services:
 
   frontend: 
    container_name: frontendcontainer 
-   build: 
-     context: ./mern/frontend 
-   image: amitkumar0441/mernproject-frontend:${BUILD_NUMBER}
+   build: ./mern/frontend 
    ports:
      - "5173:5173"
    networks: 
