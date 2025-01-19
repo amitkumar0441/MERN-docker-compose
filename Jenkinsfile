@@ -22,5 +22,17 @@ pipeline {
                 }
             }
         }
+        stage('stage 03- push image to dockerhub') {
+            steps {
+                withCredentials([usernamePassword(credentialsId: 'dockerhub_credentials', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
+                    sh '''
+                        docker login -u "$DOCKER_USER" -p "$DOCKER_PASS"
+                        docker push amitkumar0441/mernproject-backend:${BUILD_NUMBER}
+                        docker push amitkumar0441/mernproject-frontend:${BUILD_NUMBER}
+                        docker logout
+                    '''
+                }
+            }
+        }
     }
 }
